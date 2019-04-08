@@ -49,6 +49,15 @@ input {
     text-decoration: line-through;  
 }
 
+li {
+    width: 95%;
+    /* vertical-align: middle; */
+}
+.xButton {
+    float: right;
+    vertical-align: middle;
+}
+
 .x {
     border: none;
 }
