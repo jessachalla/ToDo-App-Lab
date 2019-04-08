@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="To Do List App" content="ie=edge">
+  <title> My AngularJS App </title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+
+<body>
+
+  <section ng-controller="TodoController as $ctrl">
+    <div class="flex">
+      <div class="container">
+        <h1>TODO List</h1>
+        <div>A place to store the things you have to do!</div>
+        <input ng-model="filterTodos" placeholder="Filter your ToDos">{{ filter }}</input>
+        <ol>
+            <!-- the first word after you write ng-repeat 
+            and before in
+            becomes the name of that thing 
+            and lets you know you area at that thing
+            in the array-->
+          <li ng-repeat="todo in $ctrl.todoArray | filter : filterTodos" ng-class="{'completed': todo.complete === true}">
+            <button ng-click="$ctrl.completeTask(todo)" ng-if="todo.complete === false" class="complete-botton">Complete</button>
+            {{todo.name}}
+            <button ng-click="$ctrl.removeTask(todo)" class="x">X</button>
+          </li>
+        </ol>
+
+        <form name="todoForm" ng-submit="$ctrl.addTask($ctrl.name)">
+          <input type="text" ng-model="$ctrl.name" placeholder="Add your ToDo"></input>
+          <div>
+            <button type="submit" class="add" ng-disabled="$ctrl.name === ''">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.angularjs.org/1.7.8/angular.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.controller.js"></script>
+</body>
+
+</html>
